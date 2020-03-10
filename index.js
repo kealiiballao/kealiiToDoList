@@ -17,10 +17,10 @@ app.get("/", function(req, res) {
 });
 app.post("/", function(req, res) {
   let item = req.body.newTask;
-  if (req.body.list === "work") {
+  if (req.body.list === "Work") {
     workItems.push(item);
     res.redirect("/work");
-  } else if (req.body.list ==="fun") {
+  } else if (req.body.list ==="Fun") {
     funItems.push(item);
     res.redirect("/fun");
   } else {
@@ -29,11 +29,11 @@ app.post("/", function(req, res) {
   }
 });
 app.get("/work", function(req, res) {
-  res.render("list", { listTitle: "work", newListItems: workItems });
+  res.render("list", { listTitle: "Work", newListItems: workItems });
 });
 app.get("/fun", function(req, res) {
-  res.render("list", { listTitle: "fun", newListItems: funItems });
+  res.render("list", { listTitle: "Fun", newListItems: funItems });
 });
 app.listen(3003, function() {
-  console.log("Server started on port 3000.");
+  console.log("Server started on port 3003.");
 });
