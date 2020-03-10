@@ -12,6 +12,7 @@ const app = express();
 let items = ["Buy Food", "Prepare Food", "Cook Food", "Eat Food"];
 // set an empty array for new work items
 let workItems = ["Show Up", "Get Settled"];
+let playItems = ["Sing","Dance","Eat"];
 
 // set EJS as the viewing engine to display html
 app.set('view engine', 'ejs');
@@ -43,15 +44,20 @@ app.post("/", function(req, res) {
     if (req.body.list === "Work") {
         workItems.push(item);
         res.redirect("/work");
-    } else {
+    } else if (req.body.list==="play"){
+        playItems.push(item);
+        res.redirect("/play");
+     } else {
         items.push(item);
         res.redirect("/");
-    }
+     }
 });
-
 // display default to do list on the localhost:3000/work route!
 app.get("/work", function(req, res){
-    res.render("list", {listTitle: "Work To Do List", newListItems: workItems})
+    res.render("list", {listTitle: "work", newListItems: workItems});
+});
+app.get("/play", function(req, res){
+    res.render("list", {listTitle: "play", newListItems: playItems});
 });
 
 app.listen(3000, function() {
