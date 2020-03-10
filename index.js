@@ -51,9 +51,7 @@ app.post("/", function(req, res) {
         items.push(item);
         res.redirect("/");
      }
-
 });
-
 // display default to do list on the localhost:3000/work route!
 app.get("/work", function(req, res){
     res.render("list", {listTitle: "work", newListItems: workItems});
