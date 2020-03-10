@@ -6,6 +6,7 @@ const date = require(__dirname +"/date.js");//brings in date.js module
 const app = express();
 let items = [];
 let workItems = [];
+let funItems = [];
 app.set("view engine", "ejs");
 //must be below the app constant.
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +21,9 @@ app.post("/", function(req, res) {
   if (req.body.list === "work") {
     workItems.push(item);
     res.redirect("/work");
+  } else if (item = req.body.list==="fun"){
+   funItems.push(item);
+   res.redirect("/fun");
   } else {
     items.push(item);
     res.redirect("/");
@@ -30,6 +34,10 @@ app.get("/work", function(req, res) {
 });
 app.get("/about", function(req, res) {
   res.render("about");
+});
+app.post("/fun", function(req,res){
+  let item = req.body.newTask;
+  res.redirect('/fun');
 });
 app.post("/work", function(req, res) {
   let item = req.body.newTask;
